@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>七牛云上传代码</title>
+		<script src="../node_modules/jquery/dist/jquery.js"></script>
+	</head>
+	<body>
+		<div style="width: 80%;text-align: center;"> 
+		<div>七牛云文件上传</div> <br/>
+		<input type="file" /><button id="sub">确定上传</button>
+		<img id="mypic" width="200px" height="200px" src=""/>
+		<div style="margin-left: auto;margin-top:100px;">图片地址:<input type="text" id="imgUrl" style="width:300px;height: 40px;"></div>
+		</div>
+	</body>
+	<script>
+			// //七牛token 七牛云平台安全标识
+			// var qiniutoken = '';
+			// //七牛云图片base64格式上传地址
+			// var uploadUrl = "http://upload.qiniup.com/putb64/-1";
+			// //需要上传的图片内容 base64格式
+			// var imgStr = '';
+			
+			// //七牛云平台 配置的域名
+			// var urlHeader = "https://shop.hncheshiku.com/";
+ 
+			// //获取七牛云token
+			// function qnToken() {
+			// 	$.ajax({
+			// 		url: 'http://XXXXXXX/b2c/app/api/homePage/getToken.do',
+			// 		type: 'get',
+			// 		dataType: 'json',
+			// 		//平台登录token 不重启30天过期
+			// 		headers: {
+			// 			'token': 'eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE1NDgyMjk4NDcsImlzcyI6IkNhclNoaUxpYnJhcnkiLCJzdWIiOiJbMTA5MCxcIjE3NjA4NDg1MjAzXCJdIn0.AcZUEEqhEHpj2GMzS0JQLsvnG65MoLGadiRDNaN_WAw'
+			// 		},
+			// 		async:false,
+			// 		success: function(data) {
+			// 			qiniutoken = data.data;
+			// 			console.log('获取七牛云token为:' + qiniutoken);
+			// 		},
+			// 		error: function(e){
+			// 			alert(JSON.stringify(e));
+			// 		}
+			// 	})
+			// }
+ 
+			// //上传图片
+			// function uploadImg() {
+			// 	var xhr = new XMLHttpRequest();
+			// 	xhr.open("POST", uploadUrl, true);
+			// 	//文本类型
+			// 	xhr.setRequestHeader("Content-Type", "application/octet-stream");
+			// 	//七牛认证信息 注意空格
+			// 	xhr.setRequestHeader("Authorization", "UpToken " + qiniutoken);
+			// 	xhr.send(imgStr);
+			// 	//监听状态
+			// 	xhr.onreadystatechange = function() {
+			// 		if(xhr.readyState == 4) {
+			// 			var result = xhr.responseText;
+			// 			console.log('上传请求结果数据:' + result);
+			// 			result = JSON.parse(result);
+			// 			$("#mypic").attr("src", urlHeader + result.hash);
+			// 			$("#imgUrl").val(urlHeader + result.hash);
+			// 		}
+			// 	}
+ 
+			// }
+ 
+			// //将图片转为base64格式的字符串
+			// $('input[type=file]').on('change', function() {
+			// 	var reader = new FileReader();
+			// 	//filses就是input[type=file]文件列表，files[0]就是第一个文件，这里就是将选择的第一个图片文件转化为base64的码
+			// 	reader.readAsDataURL(this.files[0]);
+			// 	reader.onload = function(e) {
+			// 		//或者 e.target.result都是一样的，都是base64码
+			// 		imgStr = reader.result.split(',')[1];
+			// 		console.log('需要上传的base64格式图片:' + imgStr);
+			// 	}
+			// });
+			
+			
+			// //开始上传
+			// $("#sub").click(function(){
+			// 	//获取最新token
+			// 	qnToken();
+			// 	uploadImg();
+			// });
+
+			//获取七牛的token
+			// 	$.ajax({
+			// 		url: 'http://zzzia.net:8080/qiniu/',
+			// 		type: 'post',
+			// 		data: {
+			// 			'accessKey':'T_22tq0Cj6E5MxfpMrdGezdCEVf3cb2sHh3fROmJ',
+			// 			'secretKey':'jPMbUre4ePKefJdmiPHUcr11cxCnB62SnxcVxe28',
+			// 			'bucket':'kxgl2333'
+			// 		},
+			// 		dataType: 'json',
+			// 		success: function (data) {
+
+			// 		}
+			// })
+	</script>
+ <script>
+	var str = [
+		{"id":1,"name":"文清","num":4151027,"class":"计科1601","course_id":"2020213"},
+		{"id":1,"name":"刘生玺","num":4166016,"class":"计科1606","course_id":"2020213"},
+		{"id":1,"name":null,"num":null,"class":null,"course_id":"2020213"},
+		{"id":1,"name":null,"num":null,"class":null,"course_id":"2020213"},
+		{"id":2,"name":"张三","num":4161121,"class":"计科1605","course_id":"2020213"},
+		{"id":2,"name":"李四","num":4161122,"class":"计科1608","course_id":"2020213"},
+		{"id":2,"name":"王五","num":4161123,"class":"计科1603","course_id":"2020213"},
+		{"id":2,"name":"马六","num":4161124,"class":"计科1601","course_id":"2020213"},
+		{"id":3,"name":"李静","num":4161125,"class":"计科1603","course_id":"2020213"},
+		{"id":3,"name":"朱琪","num":4161126,"class":"计科1602","course_id":"2020213"},
+		{"id":3,"name":null,"num":null,"class":null,"course_id":"2020213"},
+		{"id":3,"name":null,"num":null,"class":null,"course_id":"2020213"}
+	]
+
+// console.log(str)
+function translate_json(data){
+	// var result = {}
+	// let j = 0
+	// let m = 0
+	// var content = {}
+	// for(let i=0; i<data.length;i++){
+	// 	content[m].name = data[i].name
+	// 	content[m].num = data[i].num
+	// 	content[m].class = data[i].class
+	// 	if(i%4==0){
+	// 		result[j].id = data[i].id
+	// 		result[j].course_id = data[i].course_id
+	// 		result[j].content = content
+	// 		j = j+1
+	// 		m = 0
+	// 	}
+	// 	m++
+	// }
+	// return result
+
+	let dataFilter = {}
+    data.map((item) => {
+        if (dataFilter[String(item.id)]) {
+						dataFilter[String(item.id)].push(item)
+					//	console.log(item)
+        } else {
+            let arr = []
+						arr.push(item)
+					//	console.log(arr)
+            dataFilter[String(item.id)] = arr
+        }
+		})
+		return dataFilter
+}
+var ceshi = translate_json(str)
+console.log(ceshi)
+console.log(ceshi[1])
+// var data = [
+// 	{
+// 		id: '1',
+// 		content: [
+// 			{name: 'hh',num:'',class:''},
+// 			{name: 'hh',num:'',class:''},
+// 			{name: 'hh',num:'',class:''},
+// 			{name: 'hh',num:'',class:''}
+// 		],
+// 		course_id: '2020213'
+// 	},
+// 	{
+// 		id: '2',
+// 		content: [
+// 			{name: 'hh',num:'',class:''},
+// 			{name: 'hh',num:'',class:''},
+// 			{name: 'hh',num:'',class:''},
+// 			{name: 'hh',num:'',class:''}
+// 		],
+// 		course_id: '2020213'
+// 	}
+// ]
+ </script>
+</html>
