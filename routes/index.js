@@ -24,7 +24,8 @@ router.get('/profile',require("./settings"));
 router.post('/profile',require("./settings"));
 router.get('/admin',require("./settings"));
 router.post('/admin',require("./settings"));
-
+//topic
+router.get('/search',require("./topic"));
 
 //logout
 router.get('/logout', function (req, res) {

@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +8,9 @@
   <title>海天建设</title>
   <link rel="stylesheet" href="../public/lib/bootstrap/dist/css/bootstrap.css">
   <link rel="stylesheet" href="../public/css/settings.css">
+  <link rel="stylesheet" href="../public/css/thing.css">
 </head>
+
 <body>
   <!-- nav -->
   <nav class="navbar navbar-default">
@@ -29,7 +32,7 @@
       <!-- Collect the nav links, forms, and other content for toggling -->
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
         <ul class="nav navbar-nav navbar-right">
-  
+
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
               <!-- <img width="20" height="20" src="../public/img/avatar-max-img.png" alt="">  -->
@@ -51,27 +54,88 @@
               </li>
             </ul>
           </li>
-  
+
         </ul>
       </div>
     </div>
   </nav>
   <!-- nav end -->
-  
+
   <!-- section -->
- <section class="container">
+  <section class="container">
+    <div class="thing">
+      <h4>物资详情：</h4>
+      <ul class="thing_list">
+        <li class="thing_item">
+          <a href="/search?id=1">
+            <div class="thing_img">
+              <img src="../public/img/yiliao.png" alt="">
+            </div>
+            <div class="thing_info">
+              <h4>医疗援助</h4>
+              <span>已捐赠：111</span>
+              <span class="thing_target">订单查询
+                <i class="glyphicon glyphicon-menu-right"></i>
+              </span>
+            </div>
+          </a>
+        </li>
 
- </section>
+        <li class="thing_item">
+          <a href="/search?id=2">
+            <div class="thing_img">
+              <img src="../public/img/shehui.jpg" alt="">
+            </div>
+            <div class="thing_info">
+              <h4>社会关怀</h4>
+              <span>已捐赠：111</span>
+              <span class="thing_target">订单查询
+                <i class="glyphicon glyphicon-menu-right"></i>
+              </span>
+            </div>
+          </a>
+        </li>
+        <li class="thing_item">
+          <a href="/search?id=3">
+            <div class="thing_img">
+              <img src="../public/img/aixin.jpg" alt="">
+            </div>
+            <div class="thing_info">
+              <h4>爱心捐赠</h4>
+              <span>已捐赠：111</span>
+              <span class="thing_target">订单查询
+                <i class="glyphicon glyphicon-menu-right"></i>
+              </span>
+            </div>
+          </a>
+        </li>
 
-
+        <li class="thing_item">
+          <a href="/search?id=4">
+            <div class="thing_img">
+              <img src="../public/img/gongyi.jpg" alt="">
+            </div>
+            <div class="thing_info">
+              <h4>公益文化</h4>
+              <span>已捐赠：111</span>
+              <span class="thing_target">订单查询
+                <i class="glyphicon glyphicon-menu-right"></i>
+              </span>
+            </div>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
   <!-- section end -->
 
   <!-- footer -->
   <footer class="container">
-      <p>Copyright © 2019</p>
-    </footer>
-    <!-- footer end -->
+    <p>Copyright © 2019</p>
+  </footer>
+  <!-- footer end -->
 </body>
 <script src="../public/lib/jquery/jquery.js"></script>
 <script src="../public/lib/bootstrap/dist/js/bootstrap.js"></script>
+
 </html>
