@@ -10,7 +10,7 @@
 }
 .thing_item{
   width: 220px;
-  height: 296px;
+  height: 285px;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -48,11 +48,27 @@
   flex: 1;
   color: black;
 }
-.thing_target{
+/* .thing_target{
   margin-left: auto;
   color: #00BBDD;
   width: 75px;
   position: relative;
   margin-right: 5px;
   margin-top: -25px;
+} */
+.target_left{
+  margin-left: auto;
+  color: #00BBDD;
+  width: 75px;
+  position: relative;
+  margin-right: 8px;
+  margin-top: -20px;
+}
+.target_right{
+  margin-left: auto;
+  color: #00BBDD;
+  width: 75px;
+  position: relative;
+  margin-right: -40px;
+  margin-top: -20px;
 }

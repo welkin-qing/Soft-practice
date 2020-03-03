@@ -39,8 +39,8 @@
             </a>
             <ul class="dropdown-menu">
               <!-- <li class="dropdown-current-user">
-                        当前登录用户: name
-                      </li> -->
+                          当前登录用户: name
+                        </li> -->
               <!-- <li role="separator" class="divider"></li> -->
               <li>
                 <a href="/">个人主页</a>
@@ -63,40 +63,22 @@
   </nav>
   <!-- nav end -->
 
-
   <!-- section -->
   <section class="container">
-      <!-- nav setting -->
-  <div class="col-md-3 list-group">
-      <a href="#" class="list-group-item disabled">订单设置</a>
-      <a id="profile" href="/search" class="list-group-item active">订单查询</a>
-      <a id="admin" href="/new" class="list-group-item">新建订单</a>
+    <div>
+      <h4>你当前所在的位置：</h4>
+      <span>爱心捐赠</span>
     </div>
-    <!-- nav setting end-->
-
-    <!-- section -->
-  <div class="col-md-5">
-    <h4>我的订单：</h4>
-    <hr>
-    <form action="">
-      <div class="form-group">
-        <label>订单编号：</label>
-        <span class="form-control-static"></span>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">物资类别：</label>
-        <span class="form-control-static"></span>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">发货地址：</label>
-        <span class="form-control-static"></span>
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">收获地址：</label>
-        <span class="form-control-static"></span>
-      </div>
-    </form>
-  </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+      <form id="collect_form">
+        <div class="form-group">
+          <label for="exampleInputPassword1">提取数量：</label>
+          <input type="number" class="form-control" placeholder="请输入提取数量" min="0" name="tiqu_number" value="">
+        </div>
+        <button type="submit" id="new_btn" class="btn btn-success">提取</button>
+      </form>
+    </div>
 
   </section>
   <!-- section end -->
@@ -109,5 +91,26 @@
 </body>
 <script src="../public/lib/jquery/jquery.js"></script>
 <script src="../public/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+  $('#collect_form').on('submit', function (e) {
+    e.preventDefault()
+    var formData = $(this).serialize()
+    $.ajax({
+      url: '/collect',
+      type: 'post',
+      data: formData,
+      dataType: 'json',
+      success: function (data) {
+        var err_code = data.err_code
+        if (err_code === 0) {
+          window.alert("提取成功!")
+          window.location.replace(window.location.href)
+        } else if (err_code === 500) {
+          window.alert('服务器忙，请稍后重试!')
+        }
+      }
+    })
+  })
+</script>
 
 </html>

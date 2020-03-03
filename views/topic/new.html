@@ -63,38 +63,41 @@
   </nav>
   <!-- nav end -->
 
-
   <!-- section -->
   <section class="container">
-      <!-- nav setting -->
+    <!-- nav setting -->
   <div class="col-md-3 list-group">
       <a href="#" class="list-group-item disabled">订单设置</a>
-      <a id="profile" href="/search" class="list-group-item active">订单查询</a>
-      <a id="admin" href="/new" class="list-group-item">新建订单</a>
+      <a id="profile" href="/search" class="list-group-item">订单查询</a>
+      <a id="admin" href="/new" class="list-group-item active">新建订单</a>
     </div>
     <!-- nav setting end-->
-
-    <!-- section -->
   <div class="col-md-5">
-    <h4>我的订单：</h4>
+    <h4>创建订单：</h4>
     <hr>
-    <form action="">
+    <form id="new_form">
       <div class="form-group">
         <label>订单编号：</label>
-        <span class="form-control-static"></span>
+        <input type="text" class="form-control" name="num" placeholder="请输入订单编号" autofocus>
       </div>
       <div class="form-group">
-        <label for="exampleInputPassword1">物资类别：</label>
-        <span class="form-control-static"></span>
+        <label for="exampleInputEmail1">物资类别：</label>
+        <select class="form-control" name="thing_id">
+          <option value="1">医疗援助</option>
+          <option value="2">社会关怀</option>
+          <option value="3">爱心捐赠</option>
+          <option value="4">公益文化</option>
+        </select>
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">发货地址：</label>
-        <span class="form-control-static"></span>
+        <input type="text" class="form-control" placeholder="请输入发货地址" name="fahuo_address" value="">
       </div>
       <div class="form-group">
         <label for="exampleInputPassword1">收获地址：</label>
-        <span class="form-control-static"></span>
+        <input type="text" class="form-control" placeholder="请输入收货地址" name="shouhuo_address" value="">
       </div>
+      <button type="submit" id="new_btn" class="btn btn-success">创建</button>
     </form>
   </div>
 
@@ -109,5 +112,63 @@
 </body>
 <script src="../public/lib/jquery/jquery.js"></script>
 <script src="../public/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../public/lib/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+<script>
+  //动态处理密码是否为空
+  $(function () {
+    $('form').bootstrapValidator({
+      message: 'This value is not valid',
+      feedbackIcons: {
+        valid: 'glyphicon glyphicon-ok',
+        invalid: 'glyphicon glyphicon-remove',
+        validating: 'glyphicon glyphicon-refresh'
+      },
+      fields: {
+        num: {
+          validators: {
+            notEmpty: {
+              message: '输入不能为空'
+            }
+          }
+        },
+        fahuo_address: {
+          validators: {
+            notEmpty: {
+              message: '输入不能为空'
+            }
+          }
+        },
+        shouhuo_address: {
+          validators: {
+            notEmpty: {
+              message: '输入不能为空'
+            }
+          }
+        }
+      }
+    });
+  });
 
+</script>
+<script>
+  $('#new_form').on('submit', function (e) {
+    e.preventDefault()
+    var formData = $(this).serialize()
+    $.ajax({
+      url: '/new',
+      type: 'post',
+      data: formData,
+      dataType: 'json',
+      success: function (data) {
+        var err_code = data.err_code
+        if (err_code === 0) {
+          window.alert("创建成功!")
+          window.location.replace(window.location.href)
+        } else if (err_code === 500) {
+          window.alert('服务器忙，请稍后重试!')
+        }
+      }
+    })
+  })
+</script>
 </html>

@@ -26,6 +26,12 @@ router.get('/admin',require("./settings"));
 router.post('/admin',require("./settings"));
 //topic
 router.get('/search',require("./topic"));
+router.get('/new',require("./topic"));
+router.post('/new',require("./topic"));
+router.get('/collect',require("./topic"));//提取
+router.post('/collect',require("./topic"));
+router.get('/donate',require("./topic"));//捐赠
+router.post('/donate',require("./topic"));
 
 //logout
 router.get('/logout', function (req, res) {
