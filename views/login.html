@@ -11,10 +11,6 @@
 <body>
   <div class="main">
     <div class="header">
-      <!-- <a href="/">
-        <img width="100px"src="/public/img/haitian1.jpg" alt="">
-      </a> -->
-      <!-- <h1>科技协会管理系统</h1> -->
       <h1>用户登录</h1>
     </div>
     <form id="login_form">
@@ -27,17 +23,17 @@
         <!-- <a class="pull-right" href="">忘记密码？</a> -->
         <input type="password" class="form-control"  name="password" placeholder="密码">
       </div>
-      <!-- <div class="checkbox">
+      <div class="checkbox">
         <label>
           <input type="radio" name="duty" value="0">管理员
         </label>
         <label>
-          <input type="radio" name="duty" value="1">教师
+          <input type="radio" name="duty" value="1">投资方
         </label>
         <label>
-          <input type="radio" name="duty" value="2">学生
+          <input type="radio" name="duty" value="2"checked>用户
         </label>
-      </div> -->
+      </div>
       <button type="submit" class="btn btn-success btn-block">登录</button>
     </form>
     <div class="message">
@@ -50,21 +46,23 @@
     $('#login_form').on('submit', function (e) {
       e.preventDefault()
       var formData = $(this).serialize()
-     // console.log(formData)
-    // console.log('eeeeeeeee')
+      var formData = $(this).serializeArray()
+      var obj = {}; //声明一个对象
+      $.each(formData, function(index, data) {
+          obj[data.name] = data.value; //通过变量，将属性值，属性一起放到对象中
+      })
       $.ajax({
         url: '/login',
         type: 'post',
-        data: formData,
+        data: JSON.stringify(obj),
+        //data:formData,
         dataType: 'json',
+        contentType:"application/json",
         success: function (data) {
-         // console.log(data)
           var err_code = data.err_code
-          if (err_code === 0) {
-             window.alert('登录成功!')
-            // 服务端重定向针对异步请求无效
+          if (err_code == 0) {
             window.location.href = '/'
-          }else if (err_code === 500) {
+          }else if (err_code == 500) {
             window.alert('服务器忙，请稍后重试！')
           }
         }

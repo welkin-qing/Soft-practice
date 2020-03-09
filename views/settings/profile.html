@@ -147,7 +147,11 @@
 <script>
   $('#profile_form').on('submit', function (e) {
     e.preventDefault()
-    var formData = $(this).serialize()
+    var formData = $(this).serializeArray()
+    var obj = {}; 
+    $.each(formData, function(index, data) {
+        obj[data.name] = data.value; 
+    })
     var password0 = $('input[name="name"]').val()
     // console.log(password0,password1,password2)
     if (password0 == "") {
@@ -158,14 +162,15 @@
     $.ajax({
       url: '/profile',
       type: 'post',
-      data: formData,
+      data: JSON.stringify(obj),
       dataType: 'json',
+      contentType:"application/json",
       success: function (data) {
         var err_code = data.err_code
-        if (err_code === 0) {
+        if (err_code == 0) {
           window.alert("信息修改成功!")
           window.location.replace(window.location.href)
-        } else if (err_code === 500) {
+        } else if (err_code == 500) {
           window.alert('服务器忙，请稍后重试!')
         }
       }

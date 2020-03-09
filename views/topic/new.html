@@ -6,8 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>海天建设</title>
-  <link rel="stylesheet" href="../public/lib/bootstrap/dist/css/bootstrap.css">
-  <link rel="stylesheet" href="../public/css/settings.css">
+  <link rel="stylesheet" href="../../public/lib/bootstrap/dist/css/bootstrap.css">
+  <link rel="stylesheet" href="../../public/css/settings.css">
 </head>
 
 <body>
@@ -110,9 +110,9 @@
   </footer>
   <!-- footer end -->
 </body>
-<script src="../public/lib/jquery/jquery.js"></script>
-<script src="../public/lib/bootstrap/dist/js/bootstrap.js"></script>
-<script src="../../public/lib/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
+<script src="../../public/lib/jquery/jquery.js"></script>
+<script src="../../public/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script src="../../../public/lib/bootstrapvalidator/dist/js/bootstrapValidator.js"></script>
 <script>
   //动态处理密码是否为空
   $(function () {
@@ -153,18 +153,23 @@
 <script>
   $('#new_form').on('submit', function (e) {
     e.preventDefault()
-    var formData = $(this).serialize()
+    var formData = $(this).serializeArray()
+    var obj = {}; 
+    $.each(formData, function(index, data) {
+        obj[data.name] = data.value; 
+    })
     $.ajax({
       url: '/new',
       type: 'post',
-      data: formData,
+      data: JSON.stringify(obj),
       dataType: 'json',
+      contentType:"application/json",
       success: function (data) {
         var err_code = data.err_code
-        if (err_code === 0) {
+        if (err_code == 0) {
           window.alert("创建成功!")
           window.location.replace(window.location.href)
-        } else if (err_code === 500) {
+        } else if (err_code == 500) {
           window.alert('服务器忙，请稍后重试!')
         }
       }

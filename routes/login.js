@@ -10,6 +10,7 @@ router.get('/login', function (req, res) {
 })
 router.post('/login', function (req, res) {
   var body = req.body
+  console.log(typeof(body))
   console.log(body)
 })
 //register
