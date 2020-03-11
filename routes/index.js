@@ -7,7 +7,17 @@ var router = express.Router()
 router.get('/',function(req, res){
   res.render("index.html")
 })
-
+router.get('/aa', function(req, res){
+  res.status(200).json({
+    result: {
+      a1: '2000',
+      a2: '100',
+      a3: '333',
+      a4: '300'
+    },
+    err_code: 0
+  })
+})
 
 //test
 router.get('/test',function(req, res){
@@ -26,13 +36,15 @@ router.get('/admin',require("./settings"));
 router.post('/admin',require("./settings"));
 //topic
 router.get('/search',require("./topic"));
-router.get('/new',require("./topic"));
-router.post('/new',require("./topic"));
+// router.get('/new',require("./topic"));
+// router.post('/new',require("./topic"));
 router.get('/collect',require("./topic"));//提取
 router.post('/collect',require("./topic"));
 router.get('/donate',require("./topic"));//捐赠
 router.post('/donate',require("./topic"));
-
+router.get('/xiangq',require("./topic"));//xianq
+router.get('/bb', require('./topic'))
+router.get('/cc', require('./topic'))
 //logout
 router.get('/logout', function (req, res) {
   // 清除登陆状态

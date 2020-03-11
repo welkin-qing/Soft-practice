@@ -11,114 +11,128 @@
 </head>
 
 <body>
-    <!-- nav -->
-    <nav class="navbar navbar-default">
-      <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
-            aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">
-            <img height="40px" style="margin-top: -10px;" src="../../public/img/haitian1.jpg" alt="">
-            <h4 class="topic_name">海天建设</h4>
-          </a>
-        </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav navbar-right">
-  
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
-                <!-- <img width="20" height="20" src="../public/img/avatar-max-img.png" alt="">  -->
-                <span class="caret"></span>
-              </a>
-              <ul class="dropdown-menu">
-                <!-- <li class="dropdown-current-user">
+  <!-- nav -->
+  <nav class="navbar navbar-default">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <img height="40px" style="margin-top: -10px;" src="../../public/img/haitian1.jpg" alt="">
+          <h4 class="topic_name">海天建设</h4>
+        </a>
+      </div>
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav navbar-right">
+
+          <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <!-- <img width="20" height="20" src="../public/img/avatar-max-img.png" alt="">  -->
+              <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- <li class="dropdown-current-user">
                           当前登录用户: name
                         </li> -->
-                <!-- <li role="separator" class="divider"></li> -->
-                <li>
-                  <a href="/">个人主页</a>
-                </li>
-                <li>
-                  <a href="/profile">用户设置</a>
-                </li>
-                <li>
-                  <a href="/search">订单查询</a>
-                </li>
-                <li>
-                  <a href="/logout">退出</a>
-                </li>
-              </ul>
-            </li>
-  
-          </ul>
-        </div>
+              <!-- <li role="separator" class="divider"></li> -->
+              <li>
+                <a href="/">个人主页</a>
+              </li>
+              <li>
+                <a href="/profile">用户设置</a>
+              </li>
+              <li>
+                <a href="/search">订单查询</a>
+              </li>
+              <li>
+                <a href="/logout">退出</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
       </div>
-    </nav>
-    <!-- nav end -->
-  
-    <!-- section -->
-    <section class="container">
-        <div>
-            <h4>你当前所在的位置：</h4>
-            <span>爱心捐赠</span>
-          </div>
-          <div class="col-md-3"></div>
-          <div class="col-md-5">
-            <form id="donate_form">
-              <div class="form-group">
-                <label for="exampleInputPassword1">捐赠数量：</label>
-                <input type="number" class="form-control" placeholder="请输入捐赠数量" min="0" name="juanz_number" value="">
-              </div>
-              <div class="form-group">
-                  <label for="exampleInputPassword1">所在地：</label>
-                  <input type="text" class="form-control" placeholder="请输入所在地" name="address" value="">
-                </div>
-              <button type="submit" id="new_btn" class="btn btn-success">确认</button>
-            </form>
-          </div>
-  
-    </section>
-    <!-- section end -->
-  
-    <!-- footer -->
-    <footer class="container">
-      <p>Copyright © 2019</p>
-    </footer>
-    <!-- footer end -->
-  </body>
-  <script src="../../public/lib/jquery/jquery.js"></script>
-  <script src="../../public/lib/bootstrap/dist/js/bootstrap.js"></script>
-  <script>
-    $('#donate_form').on('submit', function (e) {
-      e.preventDefault()
-      var formData = $(this).serializeArray()
-      var obj = {}; 
-      $.each(formData, function(index, data) {
-          obj[data.name] = data.value; 
-      })
-      $.ajax({
-        url: '/donate',
-        type: 'post',
-        data: JSON.stringify(obj),
-        dataType: 'json',
-        contentType:"application/json",
-        success: function (data) {
-          var err_code = data.err_code
-          if (err_code == 0) {
-            window.alert("捐赠成功!")
-            window.location.replace(window.location.href)
-          } else if (err_code == 500) {
-            window.alert('服务器忙，请稍后重试!')
-          }
-        }
-      })
+    </div>
+  </nav>
+  <!-- nav end -->
+
+  <!-- section -->
+  <section class="container">
+    <div>
+      <h4>你当前所在的位置：</h4>
+      <!-- <span>爱心捐赠</span> -->
+    </div>
+    <div class="col-md-3"></div>
+    <div class="col-md-5">
+      <form id="donate_form">
+        <div class="form-group">
+          <label for="exampleInputEmail1">物资类别：</label>
+          <select class="form-control" name="thing_id">
+            <option value="1">医疗援助</option>
+            <option value="2">社会关怀</option>
+            <option value="3">爱心捐赠</option>
+            <option value="4">公益文化</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">捐赠数量：</label>
+          <input type="number" class="form-control" placeholder="请输入捐赠数量" min="0" name="juanz_number" value="">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">发货地址：</label>
+          <input type="text" class="form-control" placeholder="请输入发货地址" name="fahuo_address" value="">
+        </div>
+        <div class="form-group">
+          <label for="exampleInputPassword1">收获地址：</label>
+          <input type="text" class="form-control" placeholder="请输入收货地址" name="shouhuo_address" value="">
+        </div>
+        <button type="submit" id="new_btn" class="btn btn-success">确认</button>
+      </form>
+    </div>
+
+  </section>
+  <!-- section end -->
+
+  <!-- footer -->
+  <footer class="container">
+    <p>Copyright © 2019</p>
+  </footer>
+  <!-- footer end -->
+</body>
+<script src="../../public/lib/jquery/jquery.js"></script>
+<script src="../../public/lib/bootstrap/dist/js/bootstrap.js"></script>
+<script>
+  $('#donate_form').on('submit', function (e) {
+    e.preventDefault()
+    var formData = $(this).serializeArray()
+    var obj = {};
+    $.each(formData, function (index, data) {
+      obj[data.name] = data.value;
     })
-  </script>
+    $.ajax({
+      url: '/donate',
+      type: 'post',
+      data: JSON.stringify(obj),
+      dataType: 'json',
+      contentType: "application/json",
+      success: function (data) {
+        var err_code = data.err_code
+        if (err_code == 0) {
+          window.alert("捐赠成功!")
+          window.location.replace(window.location.href)
+        } else if (err_code == 500) {
+          window.alert('服务器忙，请稍后重试!')
+        }
+      }
+    })
+  })
+</script>
+
 </html>

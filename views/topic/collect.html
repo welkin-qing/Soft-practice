@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <head>
   <meta charset="UTF-8">
@@ -67,10 +67,41 @@
   <section class="container">
     <div>
       <h4>你当前所在的位置：</h4>
-      <span>爱心捐赠</span>
+      <!-- <span>爱心捐赠</span> -->
     </div>
-    <div class="col-md-3"></div>
-    <div class="col-md-5">
+    <div class="col-md-pull-3">
+      <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+        <thead>
+        <tr>
+          <th>clothid</th>
+          <th>clothname</th>
+          <th>clothPrice</th>
+          <th>clothColor</th>
+          <th>clothSex</th>
+          <th>服装类型</th>
+        </tr>
+        </thead>
+        <!-- <tfoot>
+        <tr>
+          <th>clothid</th>
+          <th>clothname</th>
+          <th>clothPrice</th>
+          <th>clothColor</th>
+          <th>clothSex</th>
+          <th>服装类型</th>
+        </tr>
+        </tfoot> -->
+        <tbody>
+        <tr th:each="list:${lists}">
+          <td th:text="${list.getClothId()}"></td>
+          <td th:text="${list.getClothname()}"></td>
+          <td th:text="${list.getClothPrice()}"></td>
+          <td th:text="${list.getClothDescribtion().getClothColor()}"></td>
+          <td th:text="${list.getClothDescribtion().getClothSex()}"></td>
+          <td></td>
+        </tr>
+        </tbody>
+      </table>
       <form id="collect_form">
         <div class="form-group">
           <label for="exampleInputPassword1">提取数量：</label>

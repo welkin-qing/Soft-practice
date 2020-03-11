@@ -66,35 +66,27 @@
 
   <!-- section -->
   <section class="container">
-      <!-- nav setting -->
-  <!-- <div class="col-md-3 list-group">
-      <a href="#" class="list-group-item disabled">订单设置</a>
-      <a id="profile" href="/search" class="list-group-item active">订单查询</a>
-      <a id="admin" href="/new" class="list-group-item">新建订单</a>
-    </div> -->
-    <!-- nav setting end-->
 
-    <!-- section -->
     <div class="col-md-2"></div>
+    <!-- section -->
   <div class="col-md-8">
-    <h4>我的订单：</h4>
+    <h4>物资详情：</h4>
     <hr>
     <table class="table table-hover">
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>类别</th>
-            <th>时间</th>
-            <th>发货地址</th>
-            <th>收货地址</th>
-          </tr>
-        </thead>
-        <tbody id="chaxun">
-          <!-- <tr>
-            <td></td>
-          </tr> -->
-        </tbody>
-      </table>
+      <thead>
+        <tr>
+          <th>名称</th>
+          <th>类别</th>
+          <th>数量</th>
+          <th>所在地</th>
+        </tr>
+      </thead>
+      <tbody id="wuzi">
+        <!-- <tr>
+          <td></td>
+        </tr> -->
+      </tbody>
+    </table>
   </div>
 
   </section>
@@ -110,7 +102,7 @@
 <script src="../../public/lib/bootstrap/dist/js/bootstrap.js"></script>
 <script>
    $.ajax({
-    url: '/cc',
+    url: '/bb',
     type: 'get',
     dataType: 'json',
     success: function (data){
@@ -119,9 +111,9 @@
         var result = data.result
         var str
         for(let i=0;i<result.length; i++){
-          str = str+`<tr><td>`+result[i].orderId+`</td><td>`+result[i].orderCategory+`</td><td>`+result[i].orderTime+`</td><td>`+result[i].orderAddress1+`</td><td>`+result[i].orderAddress2+`</td></tr>`
+          str = str+`<tr><td>`+result[i].supName+`</td><td>`+result[i].supCategory+`</td><td>`+result[i].supQuantity+`</td><td>`+result[i].supLocation+`</td></tr>`
         }
-        $('#chaxun').append(str)
+        $('#wuzi').append(str)
       }else if(err_code == 500){
         window.alert('服务器忙，请稍后重试！')
       }

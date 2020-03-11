@@ -61,6 +61,7 @@
   color: #00BBDD;
   width: 75px;
   position: relative;
+  top:-10px;
   margin-right: 8px;
   margin-top: -20px;
 }
@@ -69,6 +70,7 @@
   color: #00BBDD;
   width: 75px;
   position: relative;
+  top:-10px;
   margin-right: -40px;
   margin-top: -20px;
 }

@@ -10,7 +10,14 @@
   <link rel="stylesheet" href="../public/css/settings.css">
   <link rel="stylesheet" href="../public/css/thing.css">
 </head>
-
+<style>
+  .juanz{
+    float: left;
+  }
+  .xiangq{
+    color: black;
+  }
+</style>
 <body>
   <!-- nav -->
   <nav class="navbar navbar-default">
@@ -70,50 +77,58 @@
       <h4>物资详情：</h4>
       <ul class="thing_list">
         <li class="thing_item">
+          <a class="xiangq" href="/xiangq?id=1">
             <div class="thing_img">
               <img src="../public/img/yiliao.png" alt="">
             </div>
             <div class="thing_info">
               <h4>医疗援助</h4>
-              <span>已捐赠：111</span>
+              <p class="juanz" id="a1">已捐赠：111</p>
               <a class="target_left" href="/collect?id=1">提取</a>
               <a class="target_right" href="/donate?id=1">捐赠</a>
             </div>
+          </a>
         </li>
 
         <li class="thing_item">
+            <a class="xiangq" href="/xiangq?id=2">
             <div class="thing_img">
               <img src="../public/img/shehui.jpg" alt="">
             </div>
             <div class="thing_info">
               <h4>社会关怀</h4>
-              <span>已捐赠：111</span>
+              <p class="juanz" id="a2">已捐赠：111</p>
               <a class="target_left" href="/collect?id=2">提取</a>
               <a class="target_right" href="/donate?id=2">捐赠</a>
             </div>
+            </a>
         </li>
         <li class="thing_item">
+            <a class="xiangq" href="/xiangq?id=3">
             <div class="thing_img">
               <img src="../public/img/aixin.jpg" alt="">
             </div>
             <div class="thing_info">
               <h4>爱心捐赠</h4>
-              <span>已捐赠：111</span>
+              <p class="juanz" id="a3">已捐赠：111</p>
               <a class="target_left" href="/collect?id=3">提取</a>
               <a class="target_right" href="/donate?id=3">捐赠</a>
             </div>
+          </a>
         </li>
 
         <li class="thing_item">
+            <a class="xiangq" href="/xiangq?id=4">
             <div class="thing_img">
               <img src="../public/img/gongyi.jpg" alt="">
             </div>
             <div class="thing_info">
               <h4>公益文化</h4>
-              <span>已捐赠：111</span>
+              <p class="juanz" id="a4">已捐赠：111</p>
               <a class="target_left" href="/collect?id=4">提取</a>
               <a class="target_right" href="/donate?id=4">捐赠</a>
             </div>
+            </a>
         </li>
       </ul>
     </div>
@@ -128,5 +143,25 @@
 </body>
 <script src="../public/lib/jquery/jquery.js"></script>
 <script src="../public/lib/bootstrap/dist/js/bootstrap.js"></script>
-
+<script>
+  $.ajax({
+    url: '/aa',
+    type: 'get',
+    dataType: 'json',
+    success: function (data){
+      var err_code = data.err_code
+      if(err_code == 0){
+        var result = data.result
+       // console.log(result.a1)
+        $('#a1').html("已捐赠："+result.a1)
+        $('#a2').html("已捐赠："+result.a2)
+        $('#a3').html("已捐赠："+result.a3)
+        $('#a4').html("已捐赠："+result.a4)
+      //  console.log($('#a1'))
+      }else if(err_code == 500){
+        window.alert('服务器忙，请稍后重试！')
+      }
+    }
+  })
+</script>
 </html>
